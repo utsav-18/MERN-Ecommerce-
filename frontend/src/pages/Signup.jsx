@@ -48,7 +48,7 @@ export default function Signup(){
                         type="text"
                         placeholder="Enter Your Name" 
                         value={form.name} onChange={handleChange} 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required    
                     />
 
@@ -56,7 +56,7 @@ export default function Signup(){
                         type="email"
                         placeholder="Enter Email" 
                         value={form.email} onChange={handleChange} 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required    
                     />
 
@@ -64,7 +64,7 @@ export default function Signup(){
                         type="passeord"
                         placeholder="Enter Password" 
                         value={form.password} onChange={handleChange} 
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required    
                     />
 
