@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from '../api/axios';
 
 export default function Signup(){
+
     const [form, setForm] = useState({
         name:"",
         email:"",
@@ -11,11 +12,23 @@ export default function Signup(){
     const [msg, setMsg] = useState("");
 
     const handleChange = (e) =>{
-
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        });
     };
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        try{
+            const response = await api.post("/auth/signup",form);
+            setMsg(response.data.message);
+
+        } catch(err){
+            setMsg(err.response?.data?.message || "An error occurred");
+        }
+
     };
 
     return(
