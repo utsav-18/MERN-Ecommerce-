@@ -17,6 +17,7 @@ export const createProduct = async(req,res) => {
 export const getProduct = async(req,res) => {
     try{    
         const products = await product.find().sort({createdAt:-1});
+        res.json(products);
     } catch(err){
         res.status(500).json({message : 'Server Error', err});
     }
