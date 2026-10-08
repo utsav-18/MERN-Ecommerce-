@@ -41,7 +41,7 @@ export default function Signup(){
 
     return(
         <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-            <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-sm">
+            <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-sm flex flex-col">
                 <h2 className="text-2xl font-bold mb-6 text-center">Create Account</h2>
 
                 {msg && (
@@ -78,11 +78,15 @@ export default function Signup(){
                         required
                     />
 
-                    <button type="submit" className="cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
+                    <button type="submit" className="cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-colors">
                         Sign Up
                     </button>
 
                 </form>
+
+                <button className="bg-red-400 rounded-full mt-5 p-3 items-center cursor-pointer hover:bg-red-500 text-white"  onClick={() => navigate("/")}>
+                   Cancel
+                </button>
 
             </div>
         </div>
