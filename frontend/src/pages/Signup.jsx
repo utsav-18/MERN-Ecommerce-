@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import api from '../api/axios';
 
 
-
 export default function Signup(){
 
     const [form, setForm] = useState({
