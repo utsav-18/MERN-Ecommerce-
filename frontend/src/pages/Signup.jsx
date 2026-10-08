@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import api from '../api/axios';
+
+
 
 export default function Signup(){
 
@@ -10,6 +13,7 @@ export default function Signup(){
     })
 
     const [msg, setMsg] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (e) =>{
         setForm({
@@ -24,6 +28,11 @@ export default function Signup(){
         try{
             const response = await api.post("/auth/signup",form);
             setMsg(response.data.message);
+
+            //Redirect to Login page after 1 sec
+            setTimeout(()=>{
+                navigate("/login");
+            },1000);
 
         } catch(err){
             setMsg(err.response?.data?.message || "An error occurred");
@@ -60,12 +69,14 @@ export default function Signup(){
                         required    
                     />
 
-                    <input name='password' 
-                        type="passeord"
-                        placeholder="Enter Password" 
-                        value={form.password} onChange={handleChange} 
-                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
-                        required    
+                    <input 
+                        name='password'
+                        type='password'
+                        placeholder='Enter Password'
+                        value={form.password}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        required
                     />
 
                     <button type="submit" className="cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
