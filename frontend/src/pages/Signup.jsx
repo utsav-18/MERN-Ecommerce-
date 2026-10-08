@@ -74,7 +74,7 @@ export default function Signup(){
                         placeholder='Enter Password'
                         value={form.password}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required
                     />
 

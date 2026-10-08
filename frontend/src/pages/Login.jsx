@@ -65,7 +65,7 @@ export default function LogIn(){
                         placeholder='Enter Email'
                         value={form.email}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required
                     />
                     <input 
@@ -74,13 +74,17 @@ export default function LogIn(){
                         placeholder='Enter Password'
                         value={form.password}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none"
                         required
                     />
                     <button type="submit" className="cursor-pointer w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
                         Log In
                     </button>
                 </form>
+
+                <button className="bg-blue-300 rounded-full mt-5 p-3 items-center cursor-pointer"  onClick={() => navigate("/")}>
+                   Cancel
+                </button>
 
             </div>
         </div>
