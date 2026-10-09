@@ -1,10 +1,10 @@
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../api/axios";
-import { Link, link } from "react-router";
+import { Link } from "react-router";
 
 
 export default function ProductList(){
-    
+
     const [products, setProducts] = useState([]);
 
     const loadProduct = async () => {
