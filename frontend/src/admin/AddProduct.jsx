@@ -59,7 +59,7 @@ export default function AddProduct(){
                             ))
                         }
 
-                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer">
                             Add Product
                         </button>
 

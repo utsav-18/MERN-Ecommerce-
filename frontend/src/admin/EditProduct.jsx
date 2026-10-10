@@ -19,7 +19,7 @@ export default function EditProduct(){
 
     const loadProduct = async () => {
         const res = await api.get(`/products`);
-        const product = res.data.find((p) => p.id == parseInt(id));
+        const product = res.data.find((p) => p._id === id);
         setForm(product);
     }
 
@@ -36,7 +36,7 @@ export default function EditProduct(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await api.put(`/product/edit/${id}`,form);
+        await api.put(`/products/update/${id}`, form);
         alert("Product updated successfully!");
         navigate("/admin/products");
     }
@@ -46,7 +46,7 @@ export default function EditProduct(){
             <h2 className="text-2xl font-bold mb-6">Edit Product</h2>
             <form onSubmit={handleSubmit} className="space-y-3">
                 {
-                            allowedField.keys(form).map((key) =>(
+                            allowedField.map((key) => (
                                 <input
                                     key = {key}
                                     name = {key}
@@ -57,7 +57,7 @@ export default function EditProduct(){
                                 />
                             ))
                 }
-                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer">
                             Add Product
                         </button>
             </form>
