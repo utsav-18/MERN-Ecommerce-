@@ -48,8 +48,8 @@ export default function ProductList(){
                                 <td className="border border-gray-200 px-4 py-2">{product.price}</td>
                                 <td className="border border-gray-200 px-4 py-2">{product.stock}</td>
                                 <td className="border border-gray-200 px-4 py-2">
-                                    <Link to = {`/admin/products/edit/${product._id}`} className="text-white"> Edit </Link>
-                                    <button onClick={()=> deletedProduct(product._id)} className="text-red-500 hover:underline">Delete</button>
+                                    <Link to = {`/admin/products/edit/${product._id}`} className="text-black"> Edit </Link>
+                                    <button onClick={()=> deletedProduct(product._id)} className="text-red-500 hover:underline cursor-pointer ml-4">Delete</button>
                                 </td>
                             </tr>
                         ))}
