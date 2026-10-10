@@ -43,12 +43,12 @@ export default function ProductList(){
                     </thead>
                     <tbody>
                         {products.map((product)=> (
-                            <tr>
+                            <tr key={product._id} className="text-center">
                                 <td className="border border-gray-200 px-4 py-2">{product.title}</td>
                                 <td className="border border-gray-200 px-4 py-2">{product.price}</td>
                                 <td className="border border-gray-200 px-4 py-2">{product.stock}</td>
                                 <td className="border border-gray-200 px-4 py-2">
-                                    <Link to = {`/admin/products/edit/${product._id}`} className="text-black hover:underline cursor-pointer ml-4"> Edit </Link>
+                                    <Link to = {`/admin/products/update/${product._id}`} className="text-blue-600 hover:underline cursor-pointer ml-4"> Edit </Link>
                                     <button onClick={()=> deletedProduct(product._id)} className="text-red-500 hover:underline cursor-pointer ml-4">Delete</button>
                                 </td>
                             </tr>
