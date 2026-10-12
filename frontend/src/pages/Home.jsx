@@ -1,30 +1,49 @@
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import api from "../api/axios";
+import {Link} from "react-router";
+
 
 export default function Home() {
 
-    const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("");
+
+    const loadProducts = async () => {
+        const res = await api.get(`/products?search=${search}&category=${category}`);
+        setProducts(res.data);
+    }
+
+    useEffect(()=>{
+        loadProducts();
+    }, [search, category]);
+
 
     return (
-        <div className="flex flex-col min-h-screen justify-center items-center">
+        <div className="p-6">
 
-            <div className="flex items-center justify-center text-2xl text-fuchsia-600 mb-5">
-                <h1>Welcome to the Home Page</h1>
-            </div>
+            {/*Search*/}
+            <div className="mb-4 flex gap-3">
 
-            <div className="flex flex-row">
-                <button
-                    onClick={() => navigate("/signup")}
-                    className="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-colors mt-2"
+                <input placeholder="Search Products.." 
+                value={search} 
+                onChange={(e) => setSearch(e.target.value)}
+                className="border px-3 py-2 rounded w-1/2"
+                />
+                
+                {/*Category */}
+
+                <select value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="border px-3 py-2 rounded"
                 >
-                    SignUp
-                </button>
+                    <option value="">All Categories</option>
+                    <option value="Laptops">Laptops</option>
+                    <option value="Mobiles">Mobiles</option>
+                    <option value="Tablets">Tablets</option>
+                </select>
+                
 
-                <button
-                    onClick={() => navigate("/login")}
-                    className="cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition-colors mt-2 ml-3.5 mr-3.5"
-                >
-                    LogIn
-                </button>
             </div>
 
         </div>
