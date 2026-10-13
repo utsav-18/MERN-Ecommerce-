@@ -42,8 +42,23 @@ export default function Home() {
                     <option value="Mobiles">Mobiles</option>
                     <option value="Tablets">Tablets</option>
                 </select>
-                
+            
+            </div>
 
+            {/* Products Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+                {
+                    products.map((product) => (
+                        <Link
+                        key = {product._id}
+                        to ={`/product/${product._id}`}
+                        className="border rounded p-3 hover:shadow-lg transition"
+                        >
+                            <img src={product.image} alt={product.title} className="w-full h-40 object-contain bg-white rounded"/>
+                            <h2 className="mt-2 font-semibold text-lg">{product.title}</h2>
+                        </Link>
+                    ))
+                }
             </div>
 
         </div>
