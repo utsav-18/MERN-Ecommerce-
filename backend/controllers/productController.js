@@ -14,27 +14,39 @@ export const createProduct = async(req,res) => {
 };
 
 //Get all product:
-export const getProduct = async(req,res) => {
-    try{    
-        const {search, category} = req.query;
+export const getProduct = async (req, res) => {
+    try {
+        const { search, category } = req.query;
 
         let filter = {};
 
-        if(search){
-            filter.title = { $regex: search, $options: 'i' };
+        if (search) {
+            filter.$or = [
+                { title: { $regex: search, $options: "i" } },
+                { description: { $regex: search, $options: "i" } },
+                { category: { $regex: search, $options: "i" } }
+            ];
         }
 
-        if(category){
+        if (category) {
             filter.category = category;
         }
 
-        const products = await product.find(filter).sort({createdAt:-1});
+        const products = await product
+            .find(filter)
+            .sort({ createdAt: -1 });
+
         res.json(products);
 
-    } catch(err){
-        res.status(500).json({message : 'Server Error', err});
+    } catch (err) {
+        console.error("Search error:", err);
+        res.status(500).json({
+            message: "Server Error",
+            error: err.message
+        });
     }
 };
+
 
 //Update a Product 
 export const updateProduct = async(req,res)=>{
