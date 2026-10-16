@@ -8,6 +8,22 @@ export default function Navbar(){
     const userId = localStorage.getItem("userId");
 
     useEffect(()=>{
+        
+        const loadCart = async () => {
+            if(!userId) return setCount(0);
+            const res = await api.get(`/cart/${userId}`);
+            const total = res.data.items.reduce(
+                (sum,item) => sum + item.quantity, 0
+            );
+            setCount(total);
+        }
+
+        loadCart();
+        window.addEventListener("cartUpdated", loadCart);
+
+        return () => {
+            window.removeEventListener("cartUpdted", loadCart);
+        }
 
     },[userId]);
 
@@ -38,10 +54,10 @@ export default function Navbar(){
                     !userId ?(
                         <>
                             <Link to ='/login' className='text-lg'>Login</Link>
-                            <Link to='/signup' className='text-lg'>Register</Link>
+                            <Link to='/signup' className='text-lg'>Signup</Link>
                         </>
                     ) : (
-                        <button onClick={logout} className='text-lg'> LogOut </button>
+                        <button onClick={logout} className='text-lg'> Logout </button>
                     )
                 }
 
