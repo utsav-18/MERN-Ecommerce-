@@ -18,7 +18,23 @@ export default function Home() {
         loadProducts();
     }, [search, category]);
 
+    const addToCart = async(productId) => {
+        const userId = localStorage.getItem("userId");
+        if(!userId){
+            alert("Please log in to add items to your cart.");
+            return;
+        }
 
+        const res = await api.post(`/cart/add`, {userId, productId});
+        const total = res.data.cart.items.reduce(
+            (sum,item) => sum + item.productId.price * item.quantity,
+            0
+        );
+
+        localStorage.setItem("cartCount",total);
+        window.dispatchEvent(new Event("cartUpdated"));
+
+    }
     return (
         <div className="p-6">
 
