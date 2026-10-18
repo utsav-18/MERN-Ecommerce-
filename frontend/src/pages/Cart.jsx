@@ -51,9 +51,8 @@ export default function Cart() {
 
   // Calculate total
   const total = cart.items.reduce(
-    (sum, item) =>
-      sum + (item.productId?.price || 0) * item.quantity,
-    0
+    (sum, item) => sum + (item.productId?.price || 0) * item.quantity,
+    0,
   );
 
   return (
@@ -124,9 +123,7 @@ export default function Cart() {
           ))}
 
           <div className="text-right mt-4">
-            <h2 className="text-xl font-bold">
-              Total: ${total.toFixed(2)}
-            </h2>
+            <h2 className="text-xl font-bold">Total: ${total.toFixed(2)}</h2>
           </div>
         </div>
       )}
