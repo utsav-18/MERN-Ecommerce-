@@ -39,7 +39,7 @@ export default function Navbar(){
         <nav className='sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 shadow-xs'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center'>
                 <Link to="/" className='flex items-center gap-2 font-bold text-xl text-gray-900 hover:text-blue-600 transition'>
-                    <span>🍎</span>
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.LAnc1A7sOtce-AFkXkyrEwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" className='h-10'/>
                     <span className='tracking-tight'>Apple Store</span>
                 </Link>
 
@@ -49,7 +49,7 @@ export default function Navbar(){
                         className='relative p-2 text-gray-700 hover:text-blue-600 transition flex items-center'
                         title="Cart"
                     >
-                        <span className='text-2xl'>🛒</span>
+                       <img src="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png" className='h-10 transition-all duration-300 hover:scale-110 hover:shadow-2xl' />
                         {
                             cartCount > 0 && (
                                 <span className='absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold min-w-5 h-5 flex items-center justify-center rounded-full px-1 shadow-xs'>
