@@ -57,7 +57,7 @@ export default function Navbar(){
                             <Link to='/signup' className='text-lg'>Signup</Link>
                         </>
                     ) : (
-                        <button onClick={logout} className='text-lg'> Logout </button>
+                        <button onClick={logout} className='text-lg cursor-pointer hover:text-red-500'> Logout </button>
                     )
                 }
 

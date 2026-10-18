@@ -1,4 +1,4 @@
-import {createBrowserRouter , RouterProvider} from "react-router";
+import {createBrowserRouter , RouterProvider, Outlet } from "react-router";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             {path: "/login", element: <Login/>},
             {path: "/signup", element: <Signup/>},
             {path: "/product/:id", element: <ProductDetails/>},
-
+            { path: "/cart", element: <Cart /> },
             {path: "/admin/products", element: <ProductList/>},
             {path: "/admin/products/add", element : <AddProduct/>},
             {path: "/admin/products/update/:id",element : <EditProduct/>},

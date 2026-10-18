@@ -20,6 +20,7 @@ export default function Home() {
 
     const addToCart = async(productId) => {
         const userId = localStorage.getItem("userId");
+        
         if(!userId){
             alert("Please log in to add items to your cart.");
             return;
@@ -72,9 +73,17 @@ export default function Home() {
                         >
                             <img src={product.image} alt={product.title} className="w-full h-40 object-contain bg-white rounded"/>
                             <h2 className="mt-2 font-semibold text-lg">{product.title}</h2>
+                            <p>${product.price}</p>
+                                <button
+                                    onClick={() => addToCart(product._id)}
+                                    className="mt-2 w-full bg-blue-500 text-white px-3 py-2 rounded cursor-pointer hover:bg-sky-700"
+                                >
+                                    Add To Cart
+                                </button>
                         </Link>
                     ))
                 }
+
             </div>
 
         </div>
