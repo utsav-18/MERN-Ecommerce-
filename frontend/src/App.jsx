@@ -12,10 +12,12 @@ import Cart from './pages/Cart.jsx';
 
 function Layout(){
     return(
-        <>
-        <Navbar/>
-        <Outlet/>
-        </>
+        <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+            <Navbar/>
+            <main className="flex-1">
+                <Outlet/>
+            </main>
+        </div>
     )
 }
 
