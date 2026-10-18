@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cartRoute from "./routes/cart.js"
+import addressRoutes from './routes/address.js';
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth' , authRoutes);
 app.use('/api/products',productRoutes);
 app.use('/api/cart', cartRoute);
+app.use('/api/address', addressRoutes);
 
 const port = 1000;
 
