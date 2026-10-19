@@ -132,3 +132,33 @@ export const getCart = async (req, res) => {
         });
     }
 };
+
+// Clear cart
+export const clearCart = async (req, res) => {
+    try {
+        const userId = req.body.userId || req.params.userId;
+        const cart = await Cart.findOne({ userId });
+
+        if (!cart) {
+            return res.json({
+                message: "Cart is already empty",
+                cart: { items: [] }
+            });
+        }
+
+        cart.items = [];
+        await cart.save();
+
+        res.json({
+            message: "Cart cleared successfully",
+            cart
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Server Error",
+            error: err.message
+        });
+    }
+};
+

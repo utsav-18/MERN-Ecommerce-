@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 export default function Cart() {
   const userId = localStorage.getItem("userId");
   const [cart, setCart] = useState(null);
+  const [checkingOut, setCheckingOut] = useState(false);
   const navigate = useNavigate();
 
   // Load cart
@@ -28,6 +29,30 @@ export default function Cart() {
   useEffect(() => {
     loadCart();
   }, []);
+
+  // Proceed to Checkout: check if user has existing addresses
+  const handleProceedToCheckout = async () => {
+    if (!userId) {
+      alert("Please log in to proceed to checkout.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      setCheckingOut(true);
+      const res = await api.get(`/address/${userId}`);
+      if (res.data && res.data.length > 0) {
+        navigate("/checkout");
+      } else {
+        navigate("/checkout-address");
+      }
+    } catch (err) {
+      console.error("Error checking address:", err);
+      navigate("/checkout-address");
+    } finally {
+      setCheckingOut(false);
+    }
+  };
 
   // Remove item
   const removeItem = async (productId) => {
@@ -169,10 +194,11 @@ export default function Cart() {
                 Continue Shopping
               </Link>
               <button
-                onClick={() => navigate("/checkout-address")}
-                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-xl shadow-xs transition text-sm flex-1 sm:flex-initial"
+                onClick={handleProceedToCheckout}
+                disabled={checkingOut}
+                className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-xl shadow-xs transition text-sm flex-1 sm:flex-initial disabled:opacity-60"
               >
-                Proceed to Checkout
+                {checkingOut ? "Checking..." : "Proceed to Checkout"}
               </button>
             </div>
           </div>
