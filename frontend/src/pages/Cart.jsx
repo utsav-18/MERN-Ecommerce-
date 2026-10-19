@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import api from "../api/axios";
+import { useNavigate } from "react-router";
+
 
 export default function Cart() {
   const userId = localStorage.getItem("userId");
   const [cart, setCart] = useState(null);
+  const navigate = useNavigate();
 
   // Load cart
   const loadCart = async () => {
@@ -65,8 +68,10 @@ export default function Cart() {
       <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Shopping Cart</h1>
 
       {cart.items.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl border border-gray-200 p-8 shadow-xs">
-          <p className="text-5xl mb-4">🛒</p>
+        <div className="text-center py-16 bg-white rounded-2xl border border-gray-200 p-8 shadow-xs gap-3 flex flex-col items-center">
+          
+          <img src="https://cdn.pixabay.com/photo/2015/12/23/01/14/edit-1105049_1280.png" className='h-20' />
+
           <h2 className="text-xl font-semibold text-gray-800">Your cart is currently empty</h2>
           <p className="text-gray-500 text-sm mt-1 mb-6">Looks like you haven't added any products to your cart yet.</p>
           <Link
@@ -164,10 +169,10 @@ export default function Cart() {
                 Continue Shopping
               </Link>
               <button
-                onClick={() => alert("Checkout functionality coming soon!")}
+                onClick={() => navigate("/checkout-address")}
                 className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2.5 rounded-xl shadow-xs transition text-sm flex-1 sm:flex-initial"
               >
-                Checkout
+                Proceed to Checkout
               </button>
             </div>
           </div>

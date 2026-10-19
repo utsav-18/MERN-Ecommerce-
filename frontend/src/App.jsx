@@ -8,6 +8,8 @@ import EditProduct from "./admin/EditProduct.jsx";
 import ProductList from "./admin/ProductList.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Cart from './pages/Cart.jsx';
+import CheckoutAddress from "./pages/CheckoutAddress.jsx";
+import Checkout from './pages/Checkout.jsx';
 
 
 function Layout(){
@@ -34,6 +36,8 @@ const router = createBrowserRouter([
             {path: "/admin/products", element: <ProductList/>},
             {path: "/admin/products/add", element : <AddProduct/>},
             {path: "/admin/products/update/:id",element : <EditProduct/>},
+            {path:  "/checkout-address", element : <CheckoutAddress/>},
+            {path:  "/checkout", element : <Checkout/>},
         ],
     }
 ]);
