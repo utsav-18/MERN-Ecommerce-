@@ -1,8 +1,8 @@
-import mongooe, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
-const OrderSchema = new mongooe.Schema({
+const OrderSchema = new mongoose.Schema({
   userId: {
-    type: mongooe.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
@@ -37,10 +37,10 @@ const OrderSchema = new mongooe.Schema({
   },
 
   status: {
+    type: String,
     default: "Placed",
   },
 
-  timestamps: true,
-});
+}, {timestamps: true});
 
 export default mongoose.model("Order", OrderSchema);
