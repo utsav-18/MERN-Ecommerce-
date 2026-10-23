@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar.jsx";
 import Cart from "./pages/Cart.jsx";
 import CheckoutAddress from "./pages/CheckoutAddress.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import Orders from "./pages/Orders.jsx";
 
 function Layout() {
   return (
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/admin/products/update/:id", element: <EditProduct /> },
       { path: "/checkout-address", element: <CheckoutAddress /> },
       { path: "/checkout", element: <Checkout /> },
+      { path: "/orders", element: <Orders /> },
     ],
   },
 ]);

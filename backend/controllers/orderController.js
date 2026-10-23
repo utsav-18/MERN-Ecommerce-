@@ -2,6 +2,20 @@ import Order from '../models/Order.js';
 import Cart from '../models/Cart.js';
 import Product from '../models/product.js';
 
+// Get all orders for a user
+export const getOrders = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const orders = await Order.find({ userId })
+            .populate('items.productId', 'title image price')
+            .sort({ createdAt: -1 });
+        res.json(orders);
+    } catch (err) {
+        console.error("Get orders error:", err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 export const placeOrder = async (req,res) => {
     try{
         const {userId, address} = req.body;
@@ -13,15 +27,15 @@ export const placeOrder = async (req,res) => {
             return res.status(400).json({message: "Cart is Empty"});
         }
 
-        //Prepare Oder Item
-        const oderItems = cart.items.map(item => ({
+        //Prepare Order Items
+        const orderItems = cart.items.map(item => ({
             productId : item.productId._id,
             quantity : item.quantity,
             price : item.productId.price,
         }));
 
         //Total
-        const totalAmount = oderItems.reduce((total, item) => total + (item.price * item.quantity),0);
+        const totalAmount = orderItems.reduce((total, item) => total + (item.price * item.quantity),0);
 
         //Deduct Stock
         for(let item of cart.items){
@@ -31,7 +45,7 @@ export const placeOrder = async (req,res) => {
         //Create Order
         const order = await Order.create({
             userId,
-            items: oderItems,
+            items: orderItems,
             address,
             totalAmount,
             paymentMethod: "COD",
@@ -43,7 +57,7 @@ export const placeOrder = async (req,res) => {
         res.status(201).json({message: "Order Placed Successfully", orderId : order._id});
 
     }catch (err) {
-    console.error("Place order error:", err);
-    res.status(500).json({ message: "Internal server error" });
+        console.error("Place order error:", err);
+        res.status(500).json({ message: "Internal server error" });
     }
 }

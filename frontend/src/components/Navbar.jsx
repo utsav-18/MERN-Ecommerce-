@@ -76,12 +76,20 @@ export default function Navbar(){
                                 </Link>
                             </div>
                         ) : (
-                            <button 
-                                onClick={logout} 
-                                className='text-sm font-medium text-red-600 hover:text-white hover:bg-red-500 border border-red-200 px-3 py-1.5 rounded-lg cursor-pointer transition'
-                            >
-                                Logout
-                            </button>
+                            <div className='flex items-center gap-2'>
+                                <Link 
+                                    to='/orders' 
+                                    className='text-sm font-medium text-gray-700 hover:text-blue-600 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition'
+                                >
+                                    My Orders
+                                </Link>
+                                <button 
+                                    onClick={logout} 
+                                    className='text-sm font-medium text-red-600 hover:text-white hover:bg-red-500 border border-red-200 px-3 py-1.5 rounded-lg cursor-pointer transition'
+                                >
+                                    Logout
+                                </button>
+                            </div>
                         )
                     }
                 </div>
