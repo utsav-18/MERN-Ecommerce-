@@ -3,6 +3,7 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import AdminOrder from "./admin/HomePage.jsx";
 import AddProduct from "./admin/AddProduct.jsx";
 import EditProduct from "./admin/EditProduct.jsx";
 import ProductList from "./admin/ProductList.jsx";
@@ -11,6 +12,7 @@ import Cart from "./pages/Cart.jsx";
 import CheckoutAddress from "./pages/CheckoutAddress.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Orders from "./pages/Orders.jsx";
+
 
 function Layout() {
   return (
@@ -32,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/signup", element: <Signup /> },
       { path: "/product/:id", element: <ProductDetails /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/admin", element: <AdminOrder /> },
       { path: "/admin/products", element: <ProductList /> },
       { path: "/admin/products/add", element: <AddProduct /> },
       { path: "/admin/products/update/:id", element: <EditProduct /> },

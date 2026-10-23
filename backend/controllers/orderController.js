@@ -2,6 +2,16 @@ import Order from '../models/Order.js';
 import Cart from '../models/Cart.js';
 import Product from '../models/product.js';
 
+// Admins Order Received
+export const getAllOrder = async(req,res) => {
+    try{
+        const orders = await Order.find().sort({createdAt : -1});
+        res.status(200).json(orders);
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+};
+
 // Get all orders for a user
 export const getOrders = async (req, res) => {
     try {
