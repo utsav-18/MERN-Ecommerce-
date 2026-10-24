@@ -98,7 +98,7 @@ export default function Home() {
                   {product.title}
                 </h2>
                 <p className="mt-1 text-lg font-bold text-gray-900">
-                  ${product.price}
+                  ₹{product.price}
                 </p>
               </Link>
 
