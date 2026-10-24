@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 
 export default function AdminOrder(){
 
     const [Order, setOrder] = useState([]);
+    const navigate = useNavigate();
+
 
     const loadOrder = async () => {
         try {
@@ -31,11 +34,26 @@ return(
                 <div className="text-black" key={order._id}>
                     <p>Order ID: {order._id}</p>
                     <p>Customer ID: {order.userId}</p>
+                    <p>Customer Name: {order.address?.fullName}</p>
+                        {order.items.map((item, index) => (
+                            <p key={index}>
+                                Item: {item.productId?.title} × {item.quantity}
+                            </p>
+                        ))}
                     <p>Total: ₹{order.totalAmount}</p>
                     <p>Status: {order.status}</p>
                 </div>
             ))}
+
+            <button
+                className="border cursor-pointer"
+                onClick={() => navigate("/admin/products")}
+            >
+                Edit Products
+            </button>
+            
         </div>
+
     </div>
 );
 

@@ -5,7 +5,7 @@ import Product from '../models/product.js';
 // Admins Order Received
 export const getAllOrder = async(req,res) => {
     try{
-        const orders = await Order.find().sort({createdAt : -1});
+        const orders = await Order.find().sort({createdAt : -1}).populate("items.productId", "title");
         res.status(200).json(orders);
     }catch(err){
         res.status(500).json({message: err.message});
